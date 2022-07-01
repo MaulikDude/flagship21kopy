@@ -73,16 +73,16 @@ bool oled_task_user(void) {
     oled_write_P(PSTR("Layer: "), false);
 
     switch (get_highest_layer(layer_state)) {
-        case_L0:
+        case L0:
             oled_write_P(PSTR("L0\n"), false);
             break;
-        case_L1:
+        case L1:
             oled_write_P(PSTR("L1\n"), false);
             break;
-	  case_L2:
+	  case L2:
             oled_write_P(PSTR("L2\n"), false);
             break;
-	  case_L3:
+	  case L3:
             oled_write_P(PSTR("L3\n"), false);
             break;
                    
