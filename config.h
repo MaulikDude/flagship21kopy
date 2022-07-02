@@ -36,6 +36,7 @@ for dedicated LEDs, write outside slashes, hash define LED_CAPS_LOCK_PIN xyzNumb
 #define AUDIO_PIN A4
 #define AUDIO_DAC_SAMPLE_MAX 4095U
 #define AUDIO_CLICKY
+#define AUDIO_DAC_SAMPLE_WAVEFORM_SINE
 #define MUSIC_MAP
 #endif
 
