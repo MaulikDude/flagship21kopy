@@ -5,7 +5,7 @@
 
 #define HAL_USE_I2C TRUE
 
-#define HAL_USE_DAC                 TRUE
+#define HAL_USE_PAL                 TRUE
 
 #define HAL_USE_GPT                 TRUE
 
