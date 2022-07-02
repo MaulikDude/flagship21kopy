@@ -19,9 +19,9 @@
 
 /* Keyboard Matrix Assignments */
 #define MATRIX_ROW_PINS { B0, B1, B2, B3, B5, B10, B12, B13, B14, B15, C13, C14 }
-#define MATRIX_COL_PINS { A0, A1, A2, A3, A5, A6, A7, A8, A9 }
+#define MATRIX_COL_PINS { A0, A1, A2, A3, A6, A7, A8, A9, A10 }
 
-#define UNUSED_PINS C15, A10
+#define UNUSED_PINS C15,
 
 
 /* COL2ROW, ROW2COL */
@@ -34,6 +34,7 @@ for dedicated LEDs, write outside slashes, hash define LED_CAPS_LOCK_PIN xyzNumb
 
 #ifdef AUDIO_ENABLE
 #define AUDIO_PIN A4
+#define AUDIO_PIN_ALT A5
 #define AUDIO_DAC_SAMPLE_MAX 4095U
 #define AUDIO_CLICKY
 #define AUDIO_DAC_SAMPLE_WAVEFORM_SINE
