@@ -33,12 +33,14 @@ for dedicated LEDs, write outside slashes, hash define LED_CAPS_LOCK_PIN xyzNumb
 
 
 #ifdef AUDIO_ENABLE
-#define AUDIO_PIN A4
-#define AUDIO_PIN_ALT A5
-#define AUDIO_DAC_SAMPLE_MAX 4095U
+#define AUDIO_PIN A5
+#define AUDIO_PWM_DRIVER PWMD4
+#define AUDIO_PWM_CHANNEL 1
+#define AUDIO_STATE_TIMER GPTD1
 #define AUDIO_CLICKY
-#define AUDIO_DAC_SAMPLE_WAVEFORM_SINE
 #define MUSIC_MAP
+#define AUDIO_ENABLE_TONE_MULTIPLEXING
+#define AUDIO_TONE_MULTIPLEXING_RATE_DEFAULT 10
 #endif
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
