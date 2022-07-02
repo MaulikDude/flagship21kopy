@@ -1,20 +1,3 @@
-/*
-Copyright 2021 Maulik Arvind Maradia Dr.Mo/ Mo-e-lectronics store>
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #pragma once
 
 #include "config_common.h"
@@ -32,18 +15,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 12
 #define MATRIX_COLS 9
 
-/* Keyboard Matrix Assignments */
-#define MATRIX_ROW_PINS { B0, B1, B3, B4, B5, B6, B7, C13, C14, B10, B12, B13 }
-#define MATRIX_COL_PINS { A1, A2, A3, A4, A5, A6, A7, A8, A9 }
-#define UNUSED_PINS
+/* pin B6to9 on f411blackpill is for twin i2c oled and mouse like devices, A4/5 is for dac audio */
 
-/* pin B6to9 on f411blackpill is for twin i2c oled and mouse like devices */
+/* Keyboard Matrix Assignments */
+#define MATRIX_ROW_PINS { B0, B1, B2, B3, B5, B10, B12, B13, B14, B15, C13, C14 }
+#define MATRIX_COL_PINS { A0, A1, A2, A3, A5, A6, A7, A8, A9 }
+
+#define UNUSED_PINS C15, A10
+
+
 /* COL2ROW, ROW2COL */
+
 #define DIODE_DIRECTION COL2ROW
 
-/* Indicator LEDs */
-#define LED_CAPS_LOCK_PIN B14
-#define LED_PIN_ON_STATE 0
+/* Indicator for caps/scr/num lock will be displayed in oled screen. 
+for dedicated LEDs, write outside slashes, hash define LED_CAPS_LOCK_PIN xyzNumber hash define LED_PIN_ON_STATE 0 */
+
+
+#ifdef AUDIO_ENABLE
+#define AUDIO_PIN A4
+#define AUDIO_DAC_SAMPLE_MAX 4095U
+#define AUDIO_CLICKY
+#define MUSIC_MAP
+#endif
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
@@ -52,7 +46,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODERS_PAD_B { A12, A15 }
 #define ENCODER_RESOLUTIONS { 4, 2 }
 
+#ifdef POINTING_DEVICE_ENABLE
+
+#define I2C2_SCL_PIN                   B6
+#define I2C2_SDA_PIN                   B7
+#define CIRQUE_PINNACLE_ADDR           0x2A
+#define CIRQUE_PINNACLE_TIMEOUT        20
+#define CIRQUE_PINNACLE_X_LOWER        127
+#define CIRQUE_PINNACLE_X_UPPER        1919
+#define CIRQUE_PINNACLE_Y_LOWER        63
+#define CIRQUE_PINNACLE_Y_UPPER        1471
+#define CIRQUE_PINNACLE_TAPPING_TERM   200
+#define CIRQUE_PINNACLE_TOUCH_DEBOUNCE 200
+
+#endif
+
 #ifdef OLED_ENABLE
+
 #define OLED_DISPLAY_128X32
 #define I2C1_SCL_PIN        B8
 #define I2C1_SDA_PIN        B9
@@ -64,9 +74,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 
+
+
 #ifdef RGBLIGHT_ENABLE
 
-#define RGB_DI_PIN B15
+#define RGB2_DI_PIN B4
 #define RGBLIGHT_LAYERS
 #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_HUE_STEP 10
