@@ -59,6 +59,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
+#if defined (POINTING_DEVICE_ENABLE)
+
+static bool scrolling_mode = false;
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case L1:  // If we're on the L1 layer enable scrolling mode
+            scrolling_mode = true;
+            pointing_device_set_cpi(2000);
+            break;
+        default:
+            if (scrolling_mode) {  // check if we were scrolling before and set disable if so
+                scrolling_mode = false;
+                pointing_device_set_cpi(8000);
+            }
+            break;
+    }
+    return state;
+}
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (scrolling_mode) {
+        mouse_report.h = mouse_report.x;
+        mouse_report.v = mouse_report.y;
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+    return mouse_report;
+
+};
+#endif
+
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [_L0] =   { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  },
@@ -67,11 +99,21 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 #endif
 
 #ifdef AUDIO_ENABLE
-const uint8_t music_map[MATRIX_ROWS][MATRIX_COLS] = LAYOUT_L1(
-	36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
-	24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
-	12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
-	 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11
+const uint8_t music_map[MATRIX_ROWS][MATRIX_COLS] = LAYOUT(
+
+        KC_TRNS,           KC_TRNS, KC_TRNS,                                KC_TRNS, 
+        KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,  36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,   KC_TRNS, 
+        KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,  24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,   KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,   KC_TRNS, 
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11,   KC_TRNS, 
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS,        
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS
+      
+	
+	
+	 
+);
+#endif
 
 #ifdef OLED_ENABLE
 bool oled_task_user(void) {
