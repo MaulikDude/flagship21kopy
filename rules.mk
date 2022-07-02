@@ -17,7 +17,7 @@ BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = yes
 AUDIO_ENABLE = yes           # Audio output
 AUDIO_DRIVER = dac_additive # Enable keyboard RGB underglow
-AUDIO_ENABLE = no           # Audio output
+
 ENCODER_ENABLE = yes        # rotary knob encoders
 ENCODER_MAP_ENABLE = yes
 OLED_ENABLE = yes
