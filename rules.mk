@@ -16,6 +16,7 @@ NKRO_ENABLE = yes            # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = WS2812
+WS2812_DRIVER = pwm
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 AUDIO_ENABLE = yes           # Audio output
 AUDIO_DRIVER = pwm_software
