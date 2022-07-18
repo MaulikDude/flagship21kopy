@@ -84,11 +84,9 @@ for dedicated LEDs, write outside slashes, hash define LED_CAPS_LOCK_PIN xyzNumb
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-
 #define RGB_DI_PIN B4
 #define DRIVER_LED_TOTAL 122
 #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150
-
 #define WS2812_PWM_DRIVER PWMD2  // default: PWMD2
 #define WS2812_PWM_CHANNEL 2  // default: 2
 #define WS2812_PWM_PAL_MODE 2  // Pin "alternate function", see the respective datasheet for the appropriate values for your MCU. default: 2
@@ -96,8 +94,22 @@ for dedicated LEDs, write outside slashes, hash define LED_CAPS_LOCK_PIN xyzNumb
 #define WS2812_DMA_STREAM STM32_DMA1_STREAM2  // DMA Stream for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.
 #define WS2812_DMA_CHANNEL 2  // DMA Channel for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.
 #define WS2812_DMAMUX_ID STM32_DMAMUX1_TIM2_UP // DMAMUX configuration for TIMx_UP -- only required if your MCU has a DMAMUX peripheral, see the respective reference manual for the appropriate values for your MCU.
+#endif
 
-
+#ifdef RGBLIGHT_ENABLE
+#define RGBLED_NUM 21
+#define RGB_DI_PIN B4
+#define RGBLIGHT_LAYERS
+#define RGBLIGHT_LAYERS_OVERRIDE_RGB_OFF
+#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_HUE_STEP 10
+#define RGBLIGHT_SAT_STEP 7
+#define RGBLIGHT_VAL_STEP 10
+#define RGBLIGHT_LIMIT_VAL 150
+#define RGBLIGHT_SLEEP
+#define RGBLIGHT_DEFAULT_HUE 0
+#define RGBLIGHT_DEFAULT_SAT 	150
+#define RGBL IGHT_DEFAULT_VAL 100
 #endif
 
 
